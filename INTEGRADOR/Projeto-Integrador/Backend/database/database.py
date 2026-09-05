@@ -5,6 +5,6 @@ def conectar_banco():
         host="localhost",
         port=3306,
         user="root",
-        password="senha",
+        password="0713",
         database="projeto_grp"
     )

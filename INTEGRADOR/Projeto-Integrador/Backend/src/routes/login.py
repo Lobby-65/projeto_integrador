@@ -5,26 +5,21 @@ from database.database import conectar_banco
 login_bp = Blueprint("login", __name__)
 
 
-@login_bp.route("/")
+@login_bp.route("/login")
 def tela():
-    return render_template("cadastroConta.html")
+    return render_template("login.html")
+
 
 
 @login_bp.route("/login", methods=["POST"])
 def receber_dados():
-    nome = request.form.get("nomeCadastro")
-    senha = request.form.get("senhaCadastro")
-    email = request.form.get("emailCadastro")
-    telefone = request.form.get("telefoneCadastro")
+    nome = request.form.get("nomeLogin")
+    senha = request.form.get("senhaLogin")
 
     if not nome or not senha:
         flash("Preencha todos os campos.", "error")
         return redirect(url_for("login.tela"))
-
-    if senha != request.form.get("confirmarSenhaCadastro"):
-        flash("As senhas não coincidem.", "error")
-        return redirect(url_for("login.tela"))
-
+    
     conexao = None
     cursor = None
 
@@ -33,12 +28,12 @@ def receber_dados():
         cursor = conexao.cursor()
 
         sql = """
-            INSERT INTO login (nome, senha, email, telefone)
-            VALUES (%s, %s, %s, %s)
+            INSERT INTO login (nome, senha)
+            VALUES (%s, %s)
         """
 
-        flash("Usuario Cadastrado com sucesso!", "success")
-        cursor.execute(sql, (nome, senha, email, telefone))
+        flash("Usuario Conectado com sucesso!", "success")
+        cursor.execute(sql, (nome, senha))
         conexao.commit()
 
         return redirect(url_for("login.tela"))

@@ -59,29 +59,29 @@
         <div class="form-subtitle">Leva menos de um minuto.</div>
 
         <!-- CORREÇÃO 1: Adicionado action="/login" e method="POST" para enviar os dados ao Python -->
-        <form action="/login" method="POST">
+        <form action="{{ url_for('cadastroConta.receber_dados') }}" method="POST">
           <div class="row row-tight">
             <div class="col-12">
               <label class="field-label">Nome completo</label>
-              <input type="text" class="form-control" id="nomeCadastro" name="nomeCadastro"
+              <input type="text" class="form-control" id="nomeCadastroConta" name="nomeCadastroConta"
                 placeholder="Digite seu nome">
             </div>
             <div class="col-md-7">
               <label class="field-label">Email</label>
-              <input type="email" class="form-control" id="emailCadastro" name="emailCadastro"
+              <input type="email" class="form-control" id="emailCadastroConta" name="emailCadastroConta"
                 placeholder="seuemail@exemplo.com">
             </div>
             <div class="col-md-5">
               <label class="field-label">Telefone</label>
-              <input type="tel" class="form-control" id="telefoneCadastro" name="telefoneCadastro"
+              <input type="tel" class="form-control" id="telefoneCadastroConta" name="telefoneCadastroConta"
                 placeholder="(00) 00000-0000">
             </div>
             <div class="col-md-6">
               <label class="field-label">Senha</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="senhaCadastro" name="senhaCadastro"
+                <input type="password" class="form-control" id="senhaCadastroConta" name="senhaCadastroConta"
                   placeholder="Crie uma senha">
-                <button class="btn btn-eye" type="button" onclick="togglePwd('senhaCadastro', this)"
+                <button class="btn btn-eye" type="button" onclick="togglePwd('senhaCadastroConta', this)"
                   aria-label="Mostrar senha">
                   <i class="bi bi-eye"></i>
                 </button>
@@ -91,9 +91,9 @@
             <div class="col-md-6">
               <label class="field-label">Confirmar senha</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="confirmarSenhaCadastro" name="confirmarSenhaCadastro"
+                <input type="password" class="form-control" id="confirmarSenhaCadastroConta" name="confirmarSenhaCadastroConta"
                   placeholder="Repita a senha">
-                <button class="btn btn-eye" type="button" onclick="togglePwd('confirmarSenhaCadastro', this)"
+                <button class="btn btn-eye" type="button" onclick="togglePwd('confirmarSenhaCadastroConta', this)"
                   aria-label="Mostrar senha">
                   <i class="bi bi-eye"></i>
                 </button>
@@ -124,7 +124,7 @@
 
         <div class="login-link">
           <!-- CORREÇÃO 2: Alterado o caminho do arquivo físico para uma rota de exemplo -->
-          Já tem uma conta? <a href="/entrar">Fazer login</a>
+          Já tem uma conta? <a href="{{ url_for('login') }}">Fazer login</a>
         </div>
       </div>
     </div>
