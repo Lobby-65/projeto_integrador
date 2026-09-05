@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetClinica — Criar Conta</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+
+<body>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="w-100" style="max-width: 350px;">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+
+  <div class="auth-card">
+    <div class="row g-0">
+      <div class="col-md-5 panel-brand">
+        <div class="paw-bg"></div>
+        <div class="brand-title">
+          <i class="bi bi-heart-pulse-fill"></i> VetClinica
+        </div>
+        <p class="brand-tagline">
+          Cadastre-se e agende consultas, vacinas e banho &amp; tosa para
+          o seu companheiro em poucos cliques.
+        </p>
+        <div class="pup-wrap">
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="80" cy="140" rx="55" ry="8" fill="#000" opacity=".12" />
+            <path d="M80 118c-30 0-50-20-50-46 0-24 20-42 50-42s50 18 50 42c0 26-20 46-50 46z" fill="#f0c99a" />
+            <ellipse cx="46" cy="46" rx="16" ry="22" transform="rotate(-25 46 46)" fill="#e0a86f" />
+            <ellipse cx="114" cy="46" rx="16" ry="22" transform="rotate(25 114 46)" fill="#e0a86f" />
+            <ellipse cx="80" cy="90" rx="20" ry="16" fill="#fff5e6" />
+            <circle cx="60" cy="66" r="6.5" fill="#3a2a1a" />
+            <circle cx="100" cy="66" r="6.5" fill="#3a2a1a" />
+            <ellipse cx="80" cy="82" rx="8" ry="6" fill="#3a2a1a" />
+            <path d="M80 88c-6 8-16 8-16 8M80 88c6 8 16 8 16 8" stroke="#3a2a1a" stroke-width="3" stroke-linecap="round"
+              fill="none" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="col-md-7 panel-form">
+        <div class="form-title">Crie sua conta!</div>
+        <div class="form-subtitle">Leva menos de um minuto.</div>
+
+        <!-- CORREÇÃO 1: Adicionado action="/login" e method="POST" para enviar os dados ao Python -->
+        <form action="/login" method="POST">
+          <div class="row row-tight">
+            <div class="col-12">
+              <label class="field-label">Nome completo</label>
+              <input type="text" class="form-control" id="nomeCadastro" name="nomeCadastro"
+                placeholder="Digite seu nome">
+            </div>
+            <div class="col-md-7">
+              <label class="field-label">Email</label>
+              <input type="email" class="form-control" id="emailCadastro" name="emailCadastro"
+                placeholder="seuemail@exemplo.com">
+            </div>
+            <div class="col-md-5">
+              <label class="field-label">Telefone</label>
+              <input type="tel" class="form-control" id="telefoneCadastro" name="telefoneCadastro"
+                placeholder="(00) 00000-0000">
+            </div>
+            <div class="col-md-6">
+              <label class="field-label">Senha</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="senhaCadastro" name="senhaCadastro"
+                  placeholder="Crie uma senha">
+                <button class="btn btn-eye" type="button" onclick="togglePwd('senhaCadastro', this)"
+                  aria-label="Mostrar senha">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <label class="field-label">Confirmar senha</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="confirmarSenhaCadastro" name="confirmarSenhaCadastro"
+                  placeholder="Repita a senha">
+                <button class="btn btn-eye" type="button" onclick="togglePwd('confirmarSenhaCadastro', this)"
+                  aria-label="Mostrar senha">
+                  <i class="bi bi-eye"></i>
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="termos">
+            <label class="form-check-label" for="termos" style="font-size:.82rem; color:#666;">
+              Concordo com os Termos de Uso e a Política de Privacidade
+            </label>
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-pill btn-signup">Criar Conta</button>
+          </div>
+
+          <div class="divider">Ou</div>
+
+          <div class="d-grid">
+            <button type="button" class="btn btn-pill btn-google">
+              <i class="bi bi-google me-1"></i> Cadastrar com o Google
+            </button>
+          </div>
+        </form>
+
+        <div class="login-link">
+          <!-- CORREÇÃO 2: Alterado o caminho do arquivo físico para uma rota de exemplo -->
+          Já tem uma conta? <a href="/entrar">Fazer login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function togglePwd(id, btn) {
+      const input = document.getElementById(id);
+      const icon = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+      }
+    }
+  </script>
+</body>
+
+</html>
