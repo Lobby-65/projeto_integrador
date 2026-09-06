@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Codificação de caracteres: garante acentos e caracteres especiais do português -->
+    <meta charset="UTF-8">
+    <!-- Torna a página responsiva, ajustando a largura ao tamanho do dispositivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>VetClínica</title>
+
+    <!-- CSS do Bootstrap 5, via CDN: traz o grid, componentes prontos e classes utilitárias -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/INTEGRADOR/Projeto-Integrador/front/templates/css/style.css">
+
+
+</head>
+<!-- bg-light-subtle: fundo cinza bem claro (evita o branco puro) | text-dark: texto escuro padrão -->
+
+<body class=" text-dark">
+
+    <!-- ==================== NAVBAR ==================== -->
+    <!-- navbar-expand-lg: menu expandido em telas grandes, vira "hambúrguer" em telas pequenas -->
+    <nav class="navbar navbar-expand-lg py-3">
+        <div class="container">
+            <!-- navbar-brand: estilo de logotipo | text-success: verde padrão do Bootstrap -->
+            <a class="navbar-brand fw-bold fs-3 text-success" href="#">VetClínica</a>
+
+            <!-- Botão "hambúrguer", visível apenas em telas pequenas -->
+            <!-- data-bs-toggle/target: aciona o JS do Bootstrap para abrir/fechar o menu #menuPrincipal -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <!-- collapse: escondido por padrão em telas pequenas até o toggler ser clicado -->
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <!-- mx-auto: centraliza o menu | mb-2/mb-lg-0: margem inferior só quando empilhado -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link text-secondary fw-semibold" href="#">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary fw-semibold" href="#">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary fw-semibold" href="#">Contato</a></li>
+                </ul>
+                <!-- d-flex + gap-2: botões lado a lado com espaçamento entre eles -->
+                <div class="d-flex gap-2 align-items-center mt-3 mt-lg-0">
+                    <!-- btn-outline-success: botão com contorno verde e fundo transparente -->
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-success rounded px-4 fw-semibold">Entrar</a>
+                    <!-- btn-success: botão preenchido em verde sólido (ação principal) -->
+                    <a href="{{ url_for('cadastroConta') }}" class="btn btn-success rounded px-4 fw-semibold">Criar conta</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== SEÇÃO PRINCIPAL (HERO) ==================== -->
+    <div class="container my-5">
+        <!-- align-items-center: centraliza colunas verticalmente | gy-5: espaço vertical ao empilhar -->
+        <div class="row align-items-center gy-5">
+
+            <!-- Coluna de Textos -->
+            <!-- col-lg-6: ocupa metade da largura em telas grandes, 100% em telas menores -->
+            <div class="col-lg-6 pe-lg-5">
+                <!-- display-4: título grande de destaque -->
+                <h1 class="display-4 fw-bold text-dark mb-4">Cuidado atento para quem você ama incondicionalmente</h1>
+                <!-- lead: parágrafo de destaque, fonte um pouco maior que o padrão -->
+                <p class="lead text-secondary mb-4">Agende consultas, vacinas, banho e tosa e muito mais com uma equipe
+                    que trata cada pet como parte da família.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="login.html"
+                        class="btn btn-success rounded-pill px-4 py-2 fw-semibold text-white text-decoration-none">
+                        Agendar agora
+                    </a>
+                    <button type="button" class="btn btn-outline-success rounded-pill px-4 py-2 fw-semibold">Conhecer
+                        serviços</button>
+                </div>
+            </div>
+
+            <!-- Espaço reservado para a segunda coluna (ex: imagem de um pet) -->
+            <!-- <div class="col-lg-6"> ... </div> -->
+
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO DE VANTAGENS (Banner Branco) ==================== -->
+    <!-- container-fluid: ocupa 100% da largura da tela | bg-white: destaca a faixa do fundo cinza -->
+    <div class="container-fluid bg-white py-4 shadow-sm my-5">
+        <div class="container">
+            <div class="row gy-4">
+
+                <!-- col-md-4: 3 colunas lado a lado em telas médias/grandes -->
+                <div class="col-md-4 d-flex align-items-center gap-3">
+                    <!-- Círculo do ícone: rounded-circle + largura/altura iguais = círculo perfeito -->
+                    <div class="bg-light text-success rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 50px; height: 50px;">
+                        <i class="fa-solid fa-shield-halved fs-5"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-1 fw-bold text-dark">Equipe especializada</h6>
+                        <small class="text-secondary">Clínicos gerais e especialistas certificados.</small>
+                    </div>
+                </div>
+
+                <div class="col-md-4 d-flex align-items-center gap-3">
+                    <div class="bg-light text-success rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 50px; height: 50px;">
+                        <i class="fa-regular fa-clock fs-5"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-1 fw-bold text-dark">Emergência 24h</h6>
+                        <small class="text-secondary">Atendimento urgente todos os dias.</small>
+                    </div>
+                </div>
+
+                <div class="col-md-4 d-flex align-items-center gap-3">
+                    <div class="bg-light text-success rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        style="width: 50px; height: 50px;">
+                        <i class="fa-regular fa-heart fs-5"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-1 fw-bold text-dark">Cuidado humanizado</h6>
+                        <small class="text-secondary">Cada pet é tratado com carinho e paciência.</small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO DE SERVIÇOS ==================== -->
+    <div class="container py-5 mb-5">
+        <h3 class="fw-bold mb-4 text-dark">Nossos serviços</h3>
+
+        <!-- "Tags" de serviço feitas combinando btn + rounded-pill + shadow-sm (não é componente pronto) -->
+        <div class="d-flex flex-wrap gap-3">
+            <a href="#" class="btn btn-light bg-white border rounded-pill px-4 py-2 text-dark fw-medium shadow-sm"><i
+                    class="fa-solid fa-bolt text-secondary me-2"></i> Consulta veterinária</a>
+            <a href="#" class="btn btn-light bg-white border rounded-pill px-4 py-2 text-dark fw-medium shadow-sm"><i
+                    class="fa-solid fa-bath text-secondary me-2"></i> Banho e tosa</a>
+            <a href="#"
+                class="btn btn-light bg-white border rounded-pill px-4 py-2 text-dark fw-medium shadow-sm">Vacinação</a>
+            <a href="#" class="btn btn-light bg-white border rounded-pill px-4 py-2 text-dark fw-medium shadow-sm"><i
+                    class="fa-solid fa-flask text-secondary me-2"></i> Exames laboratoriais</a>
+            <a href="#" class="btn btn-light bg-white border rounded-pill px-4 py-2 text-dark fw-medium shadow-sm"><i
+                    class="fa-solid fa-shield text-secondary me-2"></i> Cirurgias</a>
+            <a href="#" class="btn btn-light bg-white border rounded-pill px-4 py-2 text-dark fw-medium shadow-sm"><i
+                    class="fa-solid fa-bell text-secondary me-2"></i> Emergência 24h</a>
+        </div>
+    </div>
+
+    <!-- ==================== RODAPÉ ==================== -->
+    <div class="container mt-4">
+        <!-- border-top: linha fina acima do rodapé, separando visualmente do conteúdo -->
+        <footer
+            class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top border-secondary-subtle">
+            <p class="col-md-4 mb-0 text-secondary small">&copy; 2026 VetClínica</p>
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-secondary small">Termos · Privacidade</a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+
+    <!-- Script do Bootstrap: necessário para o menu hambúrguer, dropdowns, etc funcionarem -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
