@@ -47,9 +47,9 @@
                 <!-- d-flex + gap-2: botões lado a lado com espaçamento entre eles -->
                 <div class="d-flex gap-2 align-items-center mt-3 mt-lg-0">
                     <!-- btn-outline-success: botão com contorno verde e fundo transparente -->
-                    <a href="login.html" class="btn btn-outline-success rounded px-4 fw-semibold">Entrar</a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-success rounded px-4 fw-semibold">Entrar</a>
                     <!-- btn-success: botão preenchido em verde sólido (ação principal) -->
-                    <a href="cadastroConta.html" class="btn btn-success rounded px-4 fw-semibold">Criar conta</a>
+                    <a href="{{ url_for('cadastroConta') }}" class="btn btn-success rounded px-4 fw-semibold">Criar conta</a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 from flask import Blueprint, flash, render_template, request, redirect, url_for
-from database.database import conectar_banco
+from Backend.database.bancoPrincipal import conectar_banco
 
 
 login_bp = Blueprint("login", __name__)
@@ -13,10 +13,10 @@ def tela():
 
 @login_bp.route("/login", methods=["POST"])
 def receber_dados():
-    nome = request.form.get("nomeLogin")
+    id = request.form.get("idLogin")
     senha = request.form.get("senhaLogin")
 
-    if not nome or not senha:
+    if not id or not senha:
         flash("Preencha todos os campos.", "error")
         return redirect(url_for("login.tela"))
     
@@ -28,12 +28,12 @@ def receber_dados():
         cursor = conexao.cursor()
 
         sql = """
-            INSERT INTO login (nome, senha)
+            INSERT INTO login (id, senha)
             VALUES (%s, %s)
         """
 
         flash("Usuario Conectado com sucesso!", "success")
-        cursor.execute(sql, (nome, senha))
+        cursor.execute(sql, (id, senha))
         conexao.commit()
 
         return redirect(url_for("login.tela"))

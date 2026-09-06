@@ -1,11 +1,11 @@
 from flask import Blueprint, flash, render_template, request, redirect, url_for
-from database.database import conectar_banco
+from Backend.database.bancoPrincipal import conectar_banco
 
 
 cadastroConta_bp = Blueprint("cadastroConta", __name__)
 
 
-@cadastroConta_bp.route("/")
+@cadastroConta_bp.route("/cadastroConta")
 def tela():
     return render_template("cadastroConta.html")
 
