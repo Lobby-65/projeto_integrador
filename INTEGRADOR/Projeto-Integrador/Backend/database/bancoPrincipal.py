@@ -1,12 +1,15 @@
 import mysql.connector
 
 def conectar_banco():
-    return mysql.connector.connect(
-        host="localhost",
-        port=3306,
-        user="root",
-        #A SENHA DEPENDE A SUA SENHA PESSOAL DO MYSQL
-        password="0713",
-        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        database="projeto_grp"
-    )
+    try:
+        conexao = mysql.connector.connect(
+            host="localhost",
+            port=3306,
+            user="root",
+            password="senha",  # 0713
+            database="projeto_grp"
+        )
+        return conexao
+    except mysql.connector.Error as err:
+        print(f"Erro ao conectar ao banco de dados: {err}")
+        return None

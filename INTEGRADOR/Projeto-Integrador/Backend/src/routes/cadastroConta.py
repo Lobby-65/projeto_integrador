@@ -1,5 +1,5 @@
 from flask import Blueprint, flash, render_template, request, redirect, url_for
-from Backend.database.bancoPrincipal import conectar_banco
+from database.bancoPrincipal import conectar_banco
 
 
 cadastroConta_bp = Blueprint("cadastroConta", __name__)
