@@ -9,21 +9,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
 
-<!-- CSS próprio desta página. Ajuste o caminho conforme a configuração
-     de static_folder do Flask (veja explicação que já demos antes). -->
+
      <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+     
+    
 </head>
 </head>
 <body>
 
 <div class="container">
 
-  <!-- =========================================================
-       NAVBAR — mesma ideia do wireframe: avatar do usuário,
-       links em formato de pílula, e a logo "VetClinica" no canto
-       oposto. "Início" fica marcado como ativo (.active) porque
-       é a página atual.
-  ========================================================== -->
+
   <nav class="home-navbar">
     <div class="d-flex align-items-center gap-2 flex-wrap">
       <!-- Avatar: por enquanto só as iniciais do usuário.

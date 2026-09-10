@@ -52,6 +52,7 @@ def login():
             return render_template('login.html', erro="Preencha todos os campos.")
 
         # 2. Chama a função de verificar, não de inserir!
+        # Desempacotamento de Tupla.
         sucesso, resultado = verificar_cadastro(usuario_digitado, senha_digitada)
 
         # 3. Redireciona com base no resultado

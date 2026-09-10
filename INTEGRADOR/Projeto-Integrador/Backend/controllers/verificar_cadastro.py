@@ -1,17 +1,21 @@
 from database.bancoPrincipal import conectar_banco
 
-def verificar_cadastro(nome, senha):
+def verificar_cadastro(email, senha):
     conexao = conectar_banco()
     
-    if conexao is None:
+    if conexao is None: # Verifica se a conexão falhou
         return False, "Erro de conexão com o banco."
+        print("🚨 [ERRO FATAL] falha ao conectar com o MySQL. Retornou None.")
+        return False, "Sistema indisponível no momento. Tente novamente mais tarde."
     
     try:
-        cursor = conexao.cursor(dictionary=True) 
+        cursor = conexao.cursor(dictionary=True) # Cria um "cursor" — o objeto que efetivamente manda comandos SQL e lê respostas.
+        # Dictionary = quando buscar resultados, me devolva cada linha como um dicionário Python
         
-        # 1. Busca APENAS pelo nome ou email (Tiramos o AND senha = %s daqui)
-        query = "SELECT * FROM cadastroconta WHERE nome = %s OR email = %s"
-        cursor.execute(query, (nome, nome)) 
+        # Monta o comando SQL e manda o cursor executá-lo, buscando um usuário cujo email bata com o texto digitado.
+        query = "SELECT * FROM cadastroconta WHERE email = %s"
+    
+        cursor.execute(query, (email,)) 
         resultado = cursor.fetchone() 
 
         # 2. Verifica se achou algum usuário com esse email/nome
@@ -25,7 +29,8 @@ def verificar_cadastro(nome, senha):
             return False, "Senha incorreta." # Retorna erro de senha
 
     except Exception as e:
-        return False, f"Erro ao consultar o banco de dados: {e}" 
+        print(f"🚨 [ERRO NO BANCO] Falha ao executar a query: {e}")   
+        return False, "Ocorreu um erro interno. Nossa equipe já foi notificada."
 
     finally: 
         if 'cursor' in locals():
