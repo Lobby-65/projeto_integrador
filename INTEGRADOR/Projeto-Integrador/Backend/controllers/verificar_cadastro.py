@@ -18,15 +18,19 @@ def verificar_cadastro(email, senha):
         cursor.execute(query, (email,)) 
         resultado = cursor.fetchone() 
 
+
+        mensagem_erro = "Email ou ID não cadastrado." # Mensagem padrão de erro
+
         # 2. Verifica se achou algum usuário com esse email/nome
         if not resultado:
-            return False, "Email ou ID não cadastrado." # Retorna erro de email
+            return False, mensagem_erro # Retorna erro de email
         
         # 3. Se o usuário existe, vamos verificar se a senha bate
         if resultado['senha'] == senha:
+            
             return True, resultado # Sucesso!
         else:
-            return False, "Senha incorreta." # Retorna erro de senha
+            return False, mensagem_erro # Retorna erro de senha
 
     except Exception as e:
         print(f"🚨 [ERRO NO BANCO] Falha ao executar a query: {e}")   

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 # from src.routes.login import login_bp
 from src.routes.cadastroConta import cadastroConta_bp
 from src.routes.index import index_bp
@@ -51,6 +51,7 @@ def login():
         if not usuario_digitado or not senha_digitada:
             return render_template('login.html', erro="Preencha todos os campos.")
 
+        session['usuario'] = usuario_digitado  # Armazena o usuário na sessão
         # 2. Chama a função de verificar, não de inserir!
         # Desempacotamento de Tupla.
         sucesso, resultado = verificar_cadastro(usuario_digitado, senha_digitada)
@@ -58,6 +59,7 @@ def login():
         # 3. Redireciona com base no resultado
         if sucesso:
             # redirect para a rota telaHome
+            session['usuario'] = resultado['nome'] 
             return redirect(url_for('telaHome')) 
         else:
             return render_template('login.html', erro=resultado)

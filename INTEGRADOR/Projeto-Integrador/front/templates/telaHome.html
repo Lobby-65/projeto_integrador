@@ -20,6 +20,7 @@
 <div class="container">
 
 
+
   <nav class="home-navbar">
     <div class="d-flex align-items-center gap-2 flex-wrap">
       <!-- Avatar: por enquanto só as iniciais do usuário.
@@ -43,7 +44,7 @@
   <div class="welcome-box mb-4">
     <div class="row align-items-center">
       <div class="col-md-8">
-        <h2>Olá, Ana! 👋</h2>
+        <h1>Bem-vindo de volta, {{ session['usuario'] }}!</h1>
         <p class="mb-0">Bem-vinda de volta. Aqui está um resumo do que está acontecendo com seus pets.</p>
       </div>
       <div class="col-md-4 text-md-end mt-3 mt-md-0">
