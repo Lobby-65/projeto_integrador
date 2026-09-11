@@ -19,7 +19,7 @@ def verificar_cadastro(email, senha):
         resultado = cursor.fetchone() 
 
 
-        mensagem_erro = "Email ou ID não cadastrado." # Mensagem padrão de erro
+        mensagem_erro = "Email ou senha não cadastrado." # Mensagem padrão de erro
 
         # 2. Verifica se achou algum usuário com esse email/nome
         if not resultado:
