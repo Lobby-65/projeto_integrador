@@ -1,0 +1,24 @@
+.btn-outline-secondary-pill {
+    border: 1px solid #6c757d;
+    border-radius: 50rem;
+    background-color: #f1f1f1;
+    color: #212529;
+    font-weight: 600;
+}
+
+.btn-outline-secondary-pill:hover {
+    background-color: #e2e2e2;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+}

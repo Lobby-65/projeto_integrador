@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VetClinica — Início</title>
+
+<!-- Bootstrap (grid, botões, badges) e Bootstrap Icons (ícones usados na navbar e nos cards) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+     
+    
+</head>
+</head>
+<body>
+
+<div class="container">
+
+
+
+  <nav class="home-navbar">
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+      <!-- Avatar: por enquanto só as iniciais do usuário.
+           Depois pode virar uma foto real vinda do backend. -->
+      <div class="nav-avatar">AC</div>
+
+      <a href="#" class="nav-pill active"><i class="bi bi-house-door-fill"></i> Início</a>
+      <a href="#" class="nav-pill"><i class="bi bi-calendar2-check"></i> Meus Agendamentos</a>
+      <a href="#" class="nav-pill"><i class="bi bi-heart-pulse"></i> Serviços</a>
+      <a href="#" class="nav-pill">🐾 Meus Pets</a>
+      <a href="#" class="nav-pill"><i class="bi bi-person-circle"></i> Meu Perfil</a>
+    </div>
+    <span class="brand-logo">VetClinica</span>
+  </nav>
+
+  <!-- =========================================================
+       BOAS-VINDAS — saudação personalizada + botão de ação
+       rápida. O nome e a data viriam do backend/sessão do usuário
+       (aqui estão fixos só para exemplo).
+  ========================================================== -->
+  <div class="welcome-box mb-4">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1>Bem-vindo de volta, {{ session['usuario'] }}!</h1>
+        <p class="mb-0">Bem-vinda de volta. Aqui está um resumo do que está acontecendo com seus pets.</p>
+      </div>
+      <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <a href="#" class="btn btn-cta"><i class="bi bi-plus-circle me-1"></i>Agendar consulta</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       CARDS DE RESUMO — três números rápidos que o tutor costuma
+       querer ver assim que entra: próxima consulta, quantos pets
+       ele tem cadastrados, e o status das vacinas.
+  ========================================================== -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-calendar-event"></i></div>
+        <div class="stat-value">12/09</div>
+        <div class="stat-label">Próxima consulta — Rex, 14:00</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="stat-icon">🐾</div>
+        <div class="stat-value">2</div>
+        <div class="stat-label">Pets cadastrados</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-shield-check"></i></div>
+        <div class="stat-value">1 pendente</div>
+        <div class="stat-label">Vacinas em dia</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mb-4">
+    <!-- =========================================================
+         MEUS PETS — lista rápida dos pets do tutor, cada um com
+         um botão de ação pra agendar algo específico para ele.
+         Isso ficaria dentro de um loop (Jinja: {% raw %}{% for pet in pets %}{% endraw %})
+         quando os dados vierem do banco.
+    ========================================================== -->
+    <div class="col-md-6">
+      <div class="section-title">Meus Pets</div>
+
+      <div class="pet-card mb-3">
+        <div class="pet-avatar">🐶</div>
+        <div>
+          <div class="pet-name">Rex</div>
+          <div class="pet-info">Cachorro · Labrador · 3 anos</div>
+        </div>
+        <button class="btn btn-pet">Agendar</button>
+      </div>
+
+      <div class="pet-card">
+        <div class="pet-avatar">🐱</div>
+        <div>
+          <div class="pet-name">Mia</div>
+          <div class="pet-info">Gato · Persa · 1 ano</div>
+        </div>
+        <button class="btn btn-pet">Agendar</button>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         PRÓXIMOS AGENDAMENTOS — tabela simples com o histórico
+         futuro. O badge de status muda de cor conforme a situação
+         (confirmado / pendente) usando as classes .badge-confirmado
+         e .badge-pendente definidas no CSS.
+    ========================================================== -->
+    <div class="col-md-6">
+      <div class="section-title">Próximos agendamentos</div>
+      <div class="agenda-card">
+        <!-- table-responsive: em telas muito estreitas, a tabela ganha
+             rolagem horizontal em vez de espremer as colunas -->
+        <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Pet</th>
+              <th>Serviço</th>
+              <th>Data</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rex</td>
+              <td>Consulta veterinária</td>
+              <td>12/09 · 14:00</td>
+              <td><span class="badge-status badge-confirmado">Confirmado</span></td>
+            </tr>
+            <tr>
+              <td>Mia</td>
+              <td>Vacinação</td>
+              <td>20/09 · 09:30</td>
+              <td><span class="badge-status badge-pendente">Pendente</span></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       RODAPÉ — só uma linha simples pra fechar a página,
+       mantendo a mesma cara discreta do rodapé do index.
+  ========================================================== -->
+  <div class="home-footer">
+    © 2026 VetClinica
+  </div>
+
+</div>
+
+</body>
+</html>

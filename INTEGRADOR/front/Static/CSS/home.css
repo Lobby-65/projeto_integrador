@@ -1,0 +1,197 @@
+/* ===================================================================
+   Paleta de cores — mesma linha visual usada no index e no cadastro
+   (verde-oliva + fundo creme/areia). Centralizado em variáveis pra
+   ser fácil trocar o tom depois se o grupo decidir ajustar.
+=================================================================== */
+:root{
+  --bg-page:#eef1e6;      /* fundo geral da página (creme esverdeado) */
+  --green:#445c34;        /* verde principal (botões, títulos, ícones ativos) */
+  --green-dark:#33461f;   /* verde mais escuro, usado em hover */
+  --green-light:#dde5cd;  /* verde clarinho, fundo de ícones/badges */
+  --peach:#f3d9c9;        /* cor decorativa secundária (detalhes) */
+  --text-dark:#2e3324;
+  --text-muted:#707a63;
+  --white:#ffffff;
+}
+
+*{ font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+body{
+  background: var(--bg-page);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
+
+/* ---------- Navbar (barra fixa em formato de "cápsula") ---------- */
+.home-navbar{
+  background: var(--white);
+  border-radius: 50px;
+  padding: 10px 18px;
+  margin: 18px auto;
+  max-width: 1100px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.nav-avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background: var(--green-light);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color: var(--green);
+  flex-shrink:0;
+}
+.nav-pill{
+  border-radius:50px;
+  padding:.45rem 1rem;
+  font-size:.85rem;
+  font-weight:600;
+  border:1px solid transparent;
+  color: var(--text-muted);
+  background:transparent;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+}
+.nav-pill.active{
+  background: var(--green);
+  color:#fff;
+}
+.nav-pill:not(.active):hover{
+  background: var(--green-light);
+  color: var(--green);
+}
+.brand-logo{
+  font-weight:700;
+  font-size:1.2rem;
+  color: var(--green);
+}
+
+/* ---------- Seção "boas-vindas" (hero pequeno do dashboard) ---------- */
+.welcome-box{
+  background: var(--green);
+  color:#fff;
+  border-radius:24px;
+  padding:32px 36px;
+}
+.welcome-box h2{ font-weight:700; }
+.welcome-box p{ color: rgba(255,255,255,.85); }
+.btn-cta{
+  background:#fff;
+  color: var(--green);
+  border-radius:50px;
+  font-weight:600;
+  padding:.55rem 1.3rem;
+  border:none;
+}
+.btn-cta:hover{ background: var(--green-light); color: var(--green-dark); }
+
+/* ---------- Cards de resumo rápido ---------- */
+.stat-card{
+  background: var(--white);
+  border-radius:18px;
+  padding:20px;
+  height:100%;
+  box-shadow: 0 4px 14px rgba(0,0,0,.04);
+}
+.stat-icon{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  background: var(--green-light);
+  color: var(--green);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.2rem;
+  margin-bottom:10px;
+}
+.stat-value{ font-size:1.3rem; font-weight:700; }
+.stat-label{ font-size:.82rem; color: var(--text-muted); }
+
+/* ---------- Cartões dos pets ---------- */
+.pet-card{
+  background: var(--white);
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.04);
+}
+.pet-avatar{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background: var(--peach);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.6rem;
+  flex-shrink:0;
+}
+.pet-name{ font-weight:700; margin-bottom:2px; }
+.pet-info{ font-size:.8rem; color: var(--text-muted); }
+.btn-pet{
+  margin-left:auto;
+  border-radius:50px;
+  font-size:.78rem;
+  padding:.35rem .9rem;
+  background: var(--green-light);
+  color: var(--green);
+  border:none;
+  font-weight:600;
+}
+.btn-pet:hover{ background: var(--green); color:#fff; }
+
+/* ---------- Seção "títulos" reutilizável ---------- */
+.section-title{
+  font-weight:700;
+  font-size:1.15rem;
+  margin-bottom:16px;
+}
+
+/* ---------- Tabela de agendamentos ---------- */
+.agenda-card{
+  background: var(--white);
+  border-radius:18px;
+  padding:8px 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.04);
+}
+.agenda-card table{ margin-bottom:0; }
+.agenda-card th{
+  font-size:.78rem;
+  color: var(--text-muted);
+  font-weight:600;
+  border-top:none;
+}
+.agenda-card td{ vertical-align:middle; font-size:.88rem; }
+.badge-status{
+  border-radius:50px;
+  font-size:.75rem;
+  font-weight:600;
+  padding:.35em .7em;
+}
+.badge-confirmado{ background: var(--green-light); color: var(--green); }
+.badge-pendente{ background:#fbe8c8; color:#8a5a13; }
+
+/* ---------- Rodapé simples ---------- */
+.home-footer{
+  color: var(--text-muted);
+  font-size:.8rem;
+  text-align:center;
+  padding: 24px 0 10px;
+}
+
+/* Responsivo: nav quebra linha e cards empilham em telas pequenas */
+@media (max-width: 767.98px){
+  .home-navbar{ flex-wrap:wrap; gap:10px; border-radius:24px; }
+  .welcome-box{ padding:24px; }
+}
